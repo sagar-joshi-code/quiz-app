@@ -41,6 +41,8 @@ const showQuestion = () => {
     button.addEventListener("click", () => {
       if (answer === currentQuestion.correct_answer) {
         console.log("correct");
+        score++;
+        document.getElementById("score").innerText = `Score: ${score}`;
       } else {
         console.log("incorrect");
       }
@@ -48,3 +50,14 @@ const showQuestion = () => {
     document.getElementById("answers").appendChild(button);
   });
 };
+document.getElementById("nextQuestion").addEventListener("click", () => {
+  currentIndex++;
+  if (currentIndex === 10) {
+    document.getElementById("quizCard").classList.add("hidden");
+    document.getElementById("finalScore").classList.remove("hidden");
+    document.getElementById("finalScore").innerText =
+      `You scored ${score} out of 10! 🎉`;
+  } else {
+    showQuestion();
+  }
+});
